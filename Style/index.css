@@ -1,3 +1,24 @@
 *{
      font-family: "Geist", sans-serif;
 }
+/* Active Tab */
+.active-tab{
+     background-color: #2563eb !important; ;
+     color: white !important;
+}
+
+/* Badge colors */
+.badge-not-applied {
+    background-color: #eff6ff;
+    color: #1e40af;
+}
+
+.badge-interview {
+    background-color: #ecfdf5;
+    color: #065f46;
+}
+
+.badge-rejected {
+    background-color: #fef2f2;
+    color: #991b1b;
+}
