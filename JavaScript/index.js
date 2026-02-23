@@ -1,4 +1,4 @@
-// ============ Phase 1 : data Setup ===========
+// ============ STEP 1 : data Setup ===========
 let jobs = [
     {
         id: 1,
@@ -83,3 +83,40 @@ let jobs = [
     }
 ];
 
+let currentTab = 'all';
+
+//Step 2: Helper Function
+
+function getBadgeInfo(status){
+    // Part = 1
+    let badgeText = 'NOT APPLIED';
+    let badgeClass = 'badge-not-applied';
+
+
+     // Status 'interview' 
+    if (status === 'interview') {
+        badgeText = 'INTERVIEW';
+        badgeClass = 'badge-interview';
+    }
+
+    // Status 'rejected' 
+    if (status === 'rejected') {
+        badgeText = 'REJECTED';
+        badgeClass = 'badge-rejected';
+    }
+
+      return {
+        text: badgeText,
+        className: badgeClass
+    };
+
+}
+
+
+// Step 3 Create Job Card Function 
+function createJobCard(job){
+    // ---- OUTER CARD ----
+    const card = document.createElement('div');
+    card.className = 'bg-white p-6 rounded-xl border border-slate-100 shadow-sm hover:shadow-md transition-all relative';
+
+}
