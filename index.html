@@ -51,6 +51,50 @@
     </div>
 <!-- Stats Section End-->
 
+<!-- ====== Filter tab Section > Left: heading + tab buttons Right: job count display ====== -->
+        <div class="flex flex-col md:flex-row justify-between items-end md:items-center mb-6 gap-4">
+        
+            <div>
+                <h3 class="text-xl font-bold mb-3">Available Jobs</h3>
+
+                <!-- Tab Button -->
+                <!-- onclick e filterJobs() call hobe -->
+                <!-- 'this' matlab: je button click holo sei button tai pass hobe -->
+                <div id="tab-container" class="flex gap-2">
+
+                    <!-- ALL tab: default active-tab -->
+                    <button
+                        onclick="filterJobs('all', this)"
+                        class="tab-btn active-tab px-5 py-2 bg-slate-200 rounded-lg text-sm font-semibold transition-all">
+                        All
+                    </button>
+
+                    <!--  Interview tab -->
+                    <button
+                        onclick="filterJobs('interview', this)"
+                        class="tab-btn px-5 py-2 bg-slate-200 rounded-lg text-sm font-semibold transition-all">
+                        Interview
+                    </button>
+
+                    <!--  Rejected tab -->
+                    <button
+                        onclick="filterJobs('rejected', this)"
+                        class="tab-btn px-5 py-2 bg-slate-200 rounded-lg text-sm font-semibold transition-all">
+                        Rejected
+                    </button>
+
+                </div>
+            </div>
+
+            <!-- JOB Count Display : "8 jobs" or "3 of 8 jobs" -->
+            <div class="bg-white border border-slate-200 px-4 py-2 rounded-lg shadow-sm mt-8">
+                <span id="job-list-count" class="font-bold text-slate-600 text-sm">0 jobs</span>
+            </div>
+
+        </div>
+        <!--  End Filter Tab Section -->
+
+
 
 
 
