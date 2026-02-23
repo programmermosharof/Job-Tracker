@@ -22,22 +22,46 @@
 
     <title>Job-Tracker</title>
 </head>
-<body>
-    <!-- Main Section -->
-     <div class="">
-        <!-- Page Title -->
-        <h1 class="text-2xl ">Job Application Tracker</h1>
-
-     </div>
-     
+<body class="bg-slate-50 min-h-screen p-4 md:p-10 text-slate-800">
+<!-- Main WRAPPER -->
 
 
-    <!-- End Main Section -->
+  <div class=" max-w-5xl mx-auto ">
+    <!-- Page Title -->
+    <h1 class="text-2xl text-[#002C5C] font-bold mb-6">Job Application Tracker</h1>
+
+<!-- Stats Section -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10" >
+    <!-- Card 1 : Total -->
+    <div class="bg-white p-6 rounded-xl shadow-sm">
+        <p class="text-sm font-medium text-slate-500 ">Total</p>
+        <!-- id ="total-count" > js number change -->
+        <h2 id="total-count" class="text-3xl font-bold">0</h2>
+    </div>
+    <!-- Card 2: Interview -->
+    <div class="bg-white p-6 rounded-xl shadow-sm">
+        <p class="text-sm font-medium text-slate-500">Interview</p>
+        <h2 id="interview-count" class="text-3xl font-bold text-green-600">0</h2>
+    </div>
+    <!-- Card 3: Rejected -->
+    <div class="bg-white p-6 rounded-xl shadow-sm">
+        <p class="text-sm font-medium text-slate-500">Rejected</p>
+        <h2 id="rejected-count" class="text-3xl font-bold text-red-600">0</h2>
+    </div>
+    </div>
+<!-- Stats Section End-->
 
 
-    
 
-    
+
+
+
+
+
+
+</div>
+<!-- End Main WRAPPER -->
+
     <!-- JavaScript File Connect -->
  <script src="JavaScript/index.js"></script>
 </body>
