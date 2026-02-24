@@ -228,8 +228,146 @@ function createJobCard(job){
 }
 
 
-// -------- Step 3: Render Job Function ----------
+// -------- Step 4: Render Job Function ----------
 function renderJobs(){
+    const container = document.getElementById('job-container');
+    const emptyState = document.getElementById('empty-state');
+    const countDisplay = document.getElementById('job-list-count');
+
+    //  Step 1 Filter 
+
+    const filteredJobs = []; 
+
+    for(let i = 0; i < jobs.length; i++){
+        const thisJob = jobs[i];
+
+        if(currentTab === 'all'){
+
+            filteredJobs.push(thisJob);
+        }
+        else if(thisJob.status === currentTab){
+
+            filteredJobs.push(thisJob);
+        }
+    }
+
+    //  Step 2 Clear Container
+    container.innerHTML = '';
+
+    // Step 3: count update 
+    if(currentTab === 'all'){
+        // All tab: total jobs count
+        countDisplay.textContent = jobs.length + "jobs";
+
+    }else{
+        countDisplay.textContent = filteredJobs.length + 'of' + jobs.length + 'jobs' ;
+    }
+    // ----   Step 4: Empty State Check ----
+    if(filteredJobs.length === 0){
+        emptyState.classList.remove ='hidden';
+    }else{
+        emptyState.classList.add = 'hidden';
+    }
+    // step 5: card render
+    for(let j = 0; j < filteredJobs.length; j++){
+        const currentJob = filteredJobs[j];
+
+        const jobCard = createJobCard(currentJob);
+
+        container.appendChild(jobCard);
+    }
+
+       // ---- DashBoard Update----
     
+    updateDashboard();
 }
 
+// ==========  Action Function  ===========
+function updateStatus(id, newStatus){
+    let foundIndex = -1;
+
+    for(let i = 0; i < jobs.length; i++){
+        if(jobs[i].id === id){
+            foundIndex = 1;
+            break;
+        }
+    }
+
+    if(foundIndex !== -1){
+
+        if (jobs[foundIndex].status === newStatus) {
+            jobs[foundIndex].status = 'not-applied';
+    }else {
+            
+            jobs[foundIndex].status = newStatus;
+        }
+}
+renderJobs();
+}
+
+function deleteJob(id){
+    if(currentTab === 'all'){
+
+        const updatedJobs =[];
+
+         for (let i = 0; i < jobs.length; i++) {
+            if (jobs[i].id !== id) {
+                updatedJobs.push(jobs[i]); 
+            }    
+        }     
+    jobs = updatedJobs;
+    }else{
+                for (let i = 0; i < jobs.length; i++) {
+            if (jobs[i].id === id) {
+                jobs[i].status = 'not-applied'; 
+                break; 
+            }
+        }
+    }
+
+    renderJobs(); 
+    
+}
+// // ---- filterJobs ----
+function filterJobs(tab, clickedButton){
+
+    currentTab = tab;
+
+    const allButtons = document.querySelectorAll('.tab-btn');
+
+     for (let i = 0; i < allButtons.length; i++) {
+        allButtons[i].classList.remove('active-tab'); 
+    }
+    clickedButton.classList.add('active-tab');
+
+     renderJobs();
+}
+
+//  ====== Update Dashboard + Call ======
+
+function updateDashboard() {
+
+    const totalCount = jobs.length;
+    //  ========== Interview count ====
+    let interviewCount = 0;
+
+        for (let i = 0; i < jobs.length; i++) {
+        if (jobs[i].status === 'interview') {
+            interviewCount = interviewCount + 1; 
+        }
+    }
+    //  ==== Rejected Count =====
+    let rejectedCount = 0;
+
+    for (let j = 0; j < jobs.length; j++) {
+        if (jobs[j].status === 'rejected') {
+            rejectedCount = rejectedCount + 1;
+        }
+    }
+
+    document.getElementById('total-count').textContent = totalCount;
+    document.getElementById('interview-count').textContent = interviewCount;
+    document.getElementById('rejected-count').textContent = rejectedCount;
+
+}
+renderJobs();
