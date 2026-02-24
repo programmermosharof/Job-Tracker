@@ -74,10 +74,6 @@ In summary, preventDefault() stops the browser’s default action, while stopPro
 
 
 
-**Technology Stack:**
-- HTML
-- CSS (Tailwind/DaisyUI)
-- JavaScript (Vanilla)
 
 
 
