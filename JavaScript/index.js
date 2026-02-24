@@ -81,6 +81,7 @@ let jobs = [
         status: 'not-applied',
         desc: 'We are looking for an experienced Frontend Developer to build scalable web applications using React and TypeScript.'
     }
+  
 ];
 
 let currentTab = 'all';
@@ -125,7 +126,7 @@ function createJobCard(job){
      const leftSide = document.createElement('div');
 
     //  ========= Company Name =============
-    const companyName = document.createComment('h4');
+    const companyName = document.createElement('h4');
     companyName.className = 'font-bold text-xl text-slate-800';
     companyName.textContent = job.company;
 
@@ -257,16 +258,16 @@ function renderJobs(){
     // Step 3: count update 
     if(currentTab === 'all'){
         // All tab: total jobs count
-        countDisplay.textContent = jobs.length + "jobs";
+        countDisplay.textContent = jobs.length + " jobs";
 
     }else{
-        countDisplay.textContent = filteredJobs.length + 'of' + jobs.length + 'jobs' ;
+        countDisplay.textContent = filteredJobs.length + ' of ' + jobs.length + ' jobs' ;
     }
     // ----   Step 4: Empty State Check ----
     if(filteredJobs.length === 0){
-        emptyState.classList.remove ='hidden';
+        emptyState.classList.remove('hidden');
     }else{
-        emptyState.classList.add = 'hidden';
+        emptyState.classList.add('hidden');
     }
     // step 5: card render
     for(let j = 0; j < filteredJobs.length; j++){
@@ -288,7 +289,7 @@ function updateStatus(id, newStatus){
 
     for(let i = 0; i < jobs.length; i++){
         if(jobs[i].id === id){
-            foundIndex = 1;
+            foundIndex = i;
             break;
         }
     }
