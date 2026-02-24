@@ -115,8 +115,121 @@ function getBadgeInfo(status){
 
 // Step 3 Create Job Card Function 
 function createJobCard(job){
-    // ---- OUTER CARD ----
+    // ---- CARD ----
     const card = document.createElement('div');
     card.className = 'bg-white p-6 rounded-xl border border-slate-100 shadow-sm hover:shadow-md transition-all relative';
+    //  ============= Top Row ===============
+    const topRow = document.createElement('div');
+    topRow.className = 'flex justify-between items-start';
+    // ============ Left Side ===============
+     const leftSide = document.createElement('div');
 
+    //  ========= Company Name =============
+    const companyName = document.createComment('h4');
+    companyName.className = 'font-bold text-xl text-slate-800';
+    companyName.textContent = job.company;
+
+    // ======= Position Title ==============
+    const positionTitle = document.createElement('p');
+    positionTitle.className = 'text-blue-600 font-semibold text-sm mb-2';
+    positionTitle.textContent = job.position;
+
+    //  =========== operator diye 3ta string join ===========
+    const jobDetails = document.createElement('p');
+    jobDetails.className = 'text-xs text-slate-400 font-medium';
+    jobDetails.textContent = job.location + ' • ' + job.type + ' • ' + job.salary;
+
+    
+    //================ Badge — status ==============
+
+    const badgeInfo = getBadgeInfo(job.status);
+
+    const badge = document.createElement('div');
+
+    badge.className = 'mt-4 inline-block px-3 py-1 rounded text-xs font-bold tracking-wider ' + badgeInfo.className;
+    badge.textContent = badgeInfo.text;
+
+    // ================= Job description =====================
+    const description = document.createElement('p');
+    description.className = 'text-sm text-slate-600 mt-3 leading-relaxed';
+    description.textContent = job.desc;
+   // ======================== appendChild ==============
+    leftSide.appendChild(companyName);   
+    leftSide.appendChild(positionTitle); 
+    leftSide.appendChild(jobDetails);    
+    leftSide.appendChild(badge);        
+    leftSide.appendChild(description);  
+    
+    // ===== Delete Button =========
+    const deleteButton = document.createElement('button');
+    deleteButton.className = 'text-slate-300 hover:text-red-500 transition-colors';
+
+    const trashIcon = document.createElement('i');
+    trashIcon.className = 'fa-solid fa-trash-can text-lg';
+
+    deleteButton.appendChild(trashIcon);
+
+    // onclick — button
+    deleteButton.onclick = function () {
+        deleteJob(job.id);
+    };
+
+    // ========= topRow e left ar right side =======
+    topRow.appendChild(leftSide);      
+    topRow.appendChild(deleteButton);
+
+
+    // ----  Action Buttons ----
+    const actionRow = document.createElement('div');
+    actionRow.className = 'mt-6 flex gap-3';
+
+       //  ==== Interview Button
+    const interviewButton = document.createElement('button');
+    // Default style: 
+    interviewButton.className = 'px-5 py-1.5 border border-green-500 text-green-600 rounded-lg text-sm font-bold hover:bg-green-500 hover:text-white transition-all';
+    interviewButton.textContent = 'Interview';
+
+        // job er status interview
+    
+    if (job.status === 'interview') {
+        interviewButton.classList.add('bg-green-500'); 
+        interviewButton.classList.add('text-white');   
+    }
+
+    interviewButton.onclick = function () {
+     updateStatus(job.id, 'interview');
+    };
+
+
+    // Rejected Button
+    const rejectedButton = document.createElement('button');
+    rejectedButton.className = 'px-5 py-1.5 border-2 border-red-500 text-red-600 rounded-lg text-sm font-bold hover:bg-red-500 hover:text-white transition-all';
+    rejectedButton.textContent = 'Rejected';
+
+    if (job.status === 'rejected') {
+    rejectedButton.classList.add('bg-red-500');
+    rejectedButton.classList.add('text-white');
+    }
+
+    rejectedButton.onclick = function () {
+        updateStatus(job.id, 'rejected');
+    };
+
+       //  button action
+    actionRow.appendChild(interviewButton);
+    actionRow.appendChild(rejectedButton); 
+
+        // ---- FINAL ----
+
+    card.appendChild(topRow);
+    card.appendChild(actionRow);
+
+    return card;
 }
+
+
+// -------- Step 3: Render Job Function ----------
+function renderJobs(){
+    
+}
+
